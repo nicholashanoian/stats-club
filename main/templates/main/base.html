@@ -1,0 +1,130 @@
+{% load staticfiles %}
+
+
+<!-- for links -->
+{% load tags %}
+
+{% url 'main:index_url_name' as index %}
+{% url 'main:software_url_name' as software %}
+{% url 'blog_url_name' as blog %}
+{% url 'main:links_url_name' as links %}
+{% url 'main:people_url_name' as people %}
+
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Bootstrap CSS -->
+		<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+
+		<link rel="stylesheet"
+			  href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/darkly/bootstrap.min.css">
+
+		<link rel="shortcut icon" type="image/png" href="{% static 'main/images/square-black-small.png' %}"/>
+
+		
+		<!-- custom css -->
+		<link rel="stylesheet" type="text/css" href="{% static 'main/css/custom.css' %}">
+		<!-- <title>UVM Stats and DS Club</title> -->
+		<title>{% block title %}{% endblock %}</title>
+
+		<!-- bootstrap only needs small jquery, but fullcalendar (index.html) needs full version -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+		
+	
+		
+
+
+
+
+
+			
+		{% block head %}{% endblock %}
+	</head>
+	<body>
+
+		
+		
+		<header class="navbar fixed-top navbar-light bg-light" id="header">
+
+			<!-- navbar brand -->
+			<a class="navbar-brand" id="header" href="{{ index }}">
+				<img src="{% static 'main/images/square-medium.png' %}" width="40"> UVM Statistics and Data Science Club
+			</a>
+
+			<!-- collapse button -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarCollapse" aria-controls="navbarCollapse"
+					aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+
+
+			<!-- links list -->			
+			<nav class="collapse navbar-collapse" id="navbarCollapse">
+				<ul class="navbar-nav">
+
+					<li class="nav-item">
+						<a class="{% active request index %} nav-link" href="{{ index }}">Home</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="{% active request blog %} nav-link" href="{{ blog }}">Blog</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="{% active request people %} nav-link" href="{{ people }}">People</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="{% active request links %} nav-link" href="{{ links }}">Useful Links</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="{% active request software %} nav-link" href="{{ software }}">Software</a>
+					</li>
+
+					
+
+					
+
+				</ul>
+			</nav>
+			
+		</header>
+
+		<main class="container" id="main-content">
+			{% block content %}
+			{% endblock %}
+		</main>
+
+
+		<footer class="footer container-fluid">
+			<p>Designed by Nicholas Hanoian</p>
+		</footer>
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		
+
+
+		<script>
+		 $(document).ready(function() {
+			 // any links with a fully qualified address open in a new tab
+			 $( 'a[href^="http://"]' ).attr( 'target','_blank' );
+			 $( 'a[href^="https://"]' ).attr( 'target','_blank' );
+
+		 });
+		</script>
+		
+		{% block script %}
+		{% endblock %}
+	</body>
+</html>
