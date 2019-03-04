@@ -56,3 +56,58 @@ footer p {
 .profile-pic {
 	width: 300px;
 }
+
+header {
+	background: #a8d096;
+}
+
+
+
+
+
+.fc-today.alert {
+	background-color:#c7e4f4;
+}
+
+.fc-event {
+	background-color: #66ac47 !important;
+	border: 1px solid #66ac47 !important;
+}
+
+.fc-event-dot {
+	background-color: #66ac47 !important;
+}
+.btn-primary {
+	color: #fff;
+	background-color: #66ac47;
+	border-color: #66ac47;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+	-webkit-box-shadow: 0 0 0 0.2rem rgba(102, 172, 71, 0.5);
+	box-shadow: 0 0 0 0.2rem rgba(102, 172, 71, 0.5);
+}
+
+.btn-primary:hover {
+	color: #fff;
+	background-color: #007155;
+	border-color: #004c39;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show>.btn-primary.dropdown-toggle {
+	color: #fff;
+	background-color: #007155;
+	border-color: #004c39;
+
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .show>.btn-primary.dropdown-toggle:focus {
+	-webkit-box-shadow: 0 0 0 0.2rem rgba(102, 172, 71, 0.5);
+	box-shadow: 0 0 0 0.2rem rgba(102, 172, 71, 0.5);
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+	color: #fff;
+	background-color: #66ac47;
+	border-color: #66ac47;
+}
