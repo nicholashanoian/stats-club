@@ -90,13 +90,16 @@ UVM Stats and DS Club
 		 themeSystem: 'bootstrap4',
 		 /* 		 displayEventTime: false, // don't show the time column in list view */
 
-		 // THIS KEY WON'T WORK IN PRODUCTION!!!
 		 // To make your own Google API key, follow the directions here:
-		 // http://fullcalendar.io/docs/google_calendar/
-		 googleCalendarApiKey: 'AIzaSyD9_TpK0HO5wz_Ryn1nAbGk5qOs7uVoGOU',
+					  // http://fullcalendar.io/docs/google_calendar/
+		 // statclub@uvm.edu api key
+		 googleCalendarApiKey: 'AIzaSyBrbsv3gRkz-Oldoc1-4iVOcsHHQxZyLEI',
 
 		 // US Holidays
-		 events: 'upeu70adke9mtj66ci7p0jnihc@group.calendar.google.com',
+		 events: {
+			 googleCalendarId: 'statclub@uvm.edu'
+		 },
+		 
 
 		 eventClick:  function(event, jsEvent, view) {
 			 console.log(event);

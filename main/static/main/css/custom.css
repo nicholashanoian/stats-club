@@ -29,6 +29,7 @@ h4, h5 {
 #main-content {
 	padding-top: 100px;
 	padding-bottom: 150px;
+	overflow-x: auto;
 }
 
 
@@ -60,8 +61,6 @@ footer p {
 header {
 	background: #a8d096;
 }
-
-
 
 
 

@@ -1,0 +1,22 @@
+# max number of requests to the app before it's automatically restarted
+SetEnv wsgi_max_requests 2
+
+# always use https
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+<Files *>
+    Options +Indexes
+</Files>
+
+# python app                                              
+PassengerAppType wsgi
+
+# show startup errors
+PassengerAppEnv development
+
+# how to start the app
+PassengerAppRoot /users/s/t/statclub/www-root/website
+PassengerPython /users/s/t/statclub/www-root/venv/bin/python
+PassengerStartupFile wsgi.py
