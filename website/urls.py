@@ -20,15 +20,20 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+import main
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
-    path('', include('main.urls')),
     path('summernote/', include('django_summernote.urls')),
+    path('', include('main.urls')),
 ]
 
-
+handler404 = main.views.handler404
+handler500 = main.views.handler404
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
