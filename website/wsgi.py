@@ -11,7 +11,7 @@ import os, sys
 
 from django.core.wsgi import get_wsgi_application
 
-path = '/users/s/t/statclub/www-root'
+path = '/users/s/t/statclub/django-root'
 if path not in sys.path:
     sys.path.append(path)
 

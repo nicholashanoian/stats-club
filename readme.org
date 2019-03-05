@@ -46,7 +46,7 @@ pip install -r requirements.txt
 
 
 ** SECRET_KEY
-A file named =secret_key.txt= must be stored in the parent directory of where the site is stored. i.e. for deployment, assuming that the site is being served from =~/www-root/=, there must be a file at =~/secret_key.txt=.
+A file named =secret_key.txt= must be stored in the parent directory of where the site is stored. i.e. for deployment, assuming that the files are stored at =~/django-root/=, there must be a file at =~/secret_key.txt= with a secret key.
 
 ** Log folder
 There must be a folder located in the parent directory of where the site is stored called =django-logs=.
@@ -58,15 +58,11 @@ python manage.py runserver
 #+END_SRC
 
 ** Deployment
-The Makefile in the root of the project can be used to deploy the site. What this does is upload everything in the project directory except for a few things. 
+=deploy.sh= in the root of the project can be used to deploy the site. This uploads the relevant files to =~/django-root=, as well as the static files to =~/www-root/static=. If the static files change, you must manually run =python manage.py collectstatic=.
 
-*Important*: If you choose to do this manually, do not upload =db.sqlite3= or the =media= folder as this will overwrite what is on the server and possibly cause data loss. 
+*Important*: If you choose to do this manually, do not upload =db.sqlite3= or the =media= folder as this will overwrite the server's database and media.
 
-A =.htaccess= file is included in the project and should be uploaded along with the rest of the project. This is set up to work with Phusion Passenger on UVM's silk v2 server. It ensures that https protocol is used and specifies to Passenger how to start the application. If there are problems with the server starting the application, edit this file, and change =PassengerAppEnv production= to =PassengerAppEnv development=. This will give a traceback if the application cannot be started.
+A =.htaccess= file is included in the project and should be uploaded along with the rest of the project. This is set up to work with Phusion Passenger on UVM's silk v2 server. It ensures that https protocol is used and specifies to Passenger how to start the application. It assumes that the Django project is located in =~/django-root=, and that it is being served from the =~/www-root= folder. If there are problems with the server starting the application, edit this file, and change =PassengerAppEnv production= to =PassengerAppEnv development=. This will give a traceback if the application cannot be started.
 
 ** Making backups
-=make-backup.sh= will copy the database as well as the =media= folder (for image attachments to blog posts) to a  =backups/[timestamp]/= folder. This script requires that the ssh alias =statclub= is set up on your local machine. This should be run every once in a while to ensure that data loss does not occur.
-
-** Loading backups to development environment
-=load-backup.sh=, given an argument of =backups/[timestamp]= will copy the database file as well as the media folder to the current directory for use in the development environment.
-
+Backups of the database (db.sqlite3) as well as the media folder should be made periodically to minimize potential data loss.
