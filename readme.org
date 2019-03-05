@@ -3,3 +3,70 @@
 This is a Django website which was created for use by the UVM Statistics and Data Science Club. It features a blog which can be managed through the Django administrator interface, as well as several static pages. It uses [[https://fullcalendar.io/][FullCalendar]] to embed the club's google calendar into the homepage (Google's default embedding is very ugly). 
 
 The logo was created using R (see logo.r) as well as [[https://www.gimp.org/][GIMP]].
+
+
+* Managing the Site
+Most of the site is simply static pages served through Django. These templates are, for the most part, simple html and can be found in the =main/templates/main/= directory. Static files should be stored in the =main/static/main/= folder. The dynamic aspects of the page are the blog and the calendar.
+
+** Blog
+The blog is a simple Django app which stores data in the site's database, and it can be modified by using the Django administrator interface. This can be accessed via https://statclub.w3.uvm.edu/admin.
+
+** Calendar
+The calendar shows events from the statclub@uvm.edu google account's calendar. To modify the events, simply log into the google account and go to https://calendar.google.com. Here you can create and modify calendar events, and the page will be updated automatically.
+
+*** Notes
+The following information is only relevant in the event that the calendar stops working. To modify the calendar's events, use https://calendar.google.com as described above.
+
+The calendar requires the usage of the Google Calendar Developer API. The project belongs to the statclub@uvm.edu Google account, and is set up to only allow requests from local host (127.0.0.1) for development, and the UVM silk server (https://statclub.w3.uvm.edu/). Should the page need to be hosted on another domain, modify the API key settings on the Google Developer Console at https://console.developers.google.com. 
+
+There is supposed to be a quota on how much this API key can be used, but this application should not reach that limit. If no events are showing up the calendar, there may be useful error messages in the browser's JavaScript console.
+
+
+
+* Hosting the Site
+
+The following conditions must be satisfied for the site to run:
+
+** Virtual Environment
+To set up the python environment, first install the tool =virtualenv=:
+#+BEGIN_SRC sh
+pip install --user virtualenv
+#+END_SRC
+
+Then create and activate a new virtual environment:
+#+BEGIN_SRC sh
+virtualenv venv
+source venv/bin/activate
+#+END_SRC
+
+Then install the packages specified in =requirements.txt=
+#+BEGIN_SRC sh
+pip install -r requirements.txt
+#+END_SRC
+
+
+** SECRET_KEY
+A file named =secret_key.txt= must be stored in the parent directory of where the site is stored. i.e. for deployment, assuming that the site is being served from =~/www-root/=, there must be a file at =~/secret_key.txt=.
+
+** Log folder
+There must be a folder located in the parent directory of where the site is stored called =django-logs=.
+
+** Development Environment
+To start the development server, activate the virtual environment (see above), and then use =manage.py= to start the server:
+#+BEGIN_SRC sh
+python manage.py runserver
+#+END_SRC
+
+** Deployment
+The Makefile in the root of the project can be used to deploy the site. What this does is upload everything in the project directory except for a few things. 
+
+*Important*: If you choose to do this manually, do not upload =db.sqlite3= or the =media= folder as this will overwrite what is on the server and possibly cause data loss. 
+
+A =.htaccess= file is included in the project and should be uploaded along with the rest of the project. This is set up to work with Phusion Passenger on UVM's silk v2 server. It ensures that https protocol is used and specifies to Passenger how to start the application. If there are problems with the server starting the application, edit this file, and change =PassengerAppEnv production= to =PassengerAppEnv development=. This will give a traceback if the application cannot be started.
+
+** Making backups
+=make-backup.sh= will copy the database as well as the =media= folder (for image attachments to blog posts) to a  =backups/[timestamp]/= folder. This script requires that the ssh alias =statclub= is set up on your local machine. This should be run every once in a while to ensure that data loss does not occur.
+
+** Loading backups to development environment
+=load-backup.sh=, given an argument of =backups/[timestamp]= will copy the database file as well as the media folder to the current directory for use in the development environment.
+

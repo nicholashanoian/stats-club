@@ -1,5 +1,5 @@
 # max number of requests to the app before it's automatically restarted
-SetEnv wsgi_max_requests 2
+SetEnv wsgi_max_requests 50
 
 # always use https
 RewriteEngine On
@@ -14,7 +14,7 @@ RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 PassengerAppType wsgi
 
 # show startup errors
-PassengerAppEnv development
+PassengerAppEnv production
 
 # how to start the app
 PassengerAppRoot /users/s/t/statclub/www-root/website
