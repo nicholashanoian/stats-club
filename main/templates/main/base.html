@@ -9,6 +9,8 @@
 {% url 'blog_url_name' as blog %}
 {% url 'main:links_url_name' as links %}
 {% url 'main:people_url_name' as people %}
+{% url 'main:asa_url_name' as asa %}
+
 
 
 <!doctype html>
@@ -87,6 +89,10 @@
 						<a class="{% active request people %} nav-link" href="{{ people }}">People</a>
 					</li>
 					
+					<li class="nav-item">
+						<a class="{% active request asa %} nav-link" href="{{ asa }}">ASA Student Chapter</a>
+					</li>
+
 					<li class="nav-item">
 						<a class="{% active request links %} nav-link" href="{{ links }}">Useful Links</a>
 					</li>

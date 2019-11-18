@@ -6,7 +6,7 @@ from django.shortcuts import render, get_object_or_404
 
 def post_list(request):
     time = timezone.now()
-    posts = Post.objects.order_by('created_date')
+    posts = Post.objects.order_by('-created_date')
     return render(request, 'blog/post_list.html', {'posts': posts, 'time': time})
 
 

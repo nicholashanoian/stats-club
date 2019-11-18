@@ -15,6 +15,9 @@ def software(request):
 def links(request):
     return render(request, 'main/links.html')
 
+def asa(request):
+    return render(request, 'main/asa.html')
+
 def handler404(request, *args, **kwargs):
     return render(request, 'main/404.html', status=404)
 
