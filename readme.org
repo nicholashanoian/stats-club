@@ -4,6 +4,7 @@ This is a Django website which was created for use by the UVM Statistics and Dat
 
 The logo was created using R (see logo.r) as well as [[https://www.gimp.org/][GIMP]].
 
+[[file:main/static/main/images/long-large.png]]
 
 * Managing the Site
 Most of the site is simply static pages served through Django. These templates are, for the most part, simple html and can be found in the =main/templates/main/= directory. Static files should be stored in the =main/static/main/= folder. The dynamic aspects of the page are the blog and the calendar.
